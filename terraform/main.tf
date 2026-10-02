@@ -114,6 +114,7 @@ resource "aws_instance" "web" {
   subnet_id              = aws_subnet.public.id
   vpc_security_group_ids = [aws_security_group.web.id]
 
+
   # user_data is a script that runs ONCE, the first time the server boots.
   # Here it creates a user with sudo (superuser) rights and enables password login.
   # ${var.vm_username} and ${var.vm_password} are filled in by Terraform.
@@ -135,7 +136,8 @@ resource "aws_instance" "web" {
   user_data_replace_on_change = true
 
   tags = {
-    Name = "${var.project_name}-ec2-${var.region}"
+    Name     = "${var.project_name}-ec2-${var.region}"
+    Training = "ShopEasy-DevOps-Lab"
   }
 }
 
